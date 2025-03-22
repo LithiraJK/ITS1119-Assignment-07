@@ -40,7 +40,11 @@
             <div class="frame" id="frame-07">
                 <img src="/assets/images/home.gif" alt="home">
             </div>
-        </div>        
+        </div> 
+        <div class="btn-container">
+            <button type="button" onclick="" id="btn-start">Start</button>
+            <button type="button" onclick="" id="btn-end">Stop</button>
+          </div>       
     </main>
 
 
@@ -51,6 +55,7 @@
             console.log("jQuery is ready!");
 
             let letters = ['A','B','C','D','E','F'];
+            let intervalId;
 
             let $frames = $('.frame > h2');
             console.log($frames);
@@ -68,10 +73,21 @@
 
             updateUI();
             
-            setInterval(function(){
-                rotateArray(letters);
-                updateUI();
-            },2000);
+           
+            $('#btn-start').click(function() {
+                if (!intervalId) {  
+                    intervalId = setInterval(function() {
+                        rotateArray(letters);
+                        updateUI();
+                    }, 1500);
+                }
+            });
+
+
+            $('#btn-end').click(function() {
+                clearInterval(intervalId); 
+                intervalId = null; 
+            });
 
         });
 

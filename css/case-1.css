@@ -54,5 +54,27 @@ main{
 }
 .frame > h2 {
     z-index: 2;
-    color: #60CEC3;
+    color: #34ccbd;
+}
+
+.btn-container button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    margin: 20px 5px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+.btn-container button:hover {
+    transform: translateY(-2px);
+    cursor: pointer;
+  }
+
+#btn-start {
+  background-color: #007fff;
+}
+#btn-end {
+  background-color: red;
 }
