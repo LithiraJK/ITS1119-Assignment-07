@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case-02</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/css/case-2.css">
+</head>
+<body>
+    <header>
+        <h1>Java Script Queue</h1>
+    </header>
+    <main>
+        <div class="box-container">
+            <div class="box-row" id="row-1">
+                <div class="box" id="box-1"></div>
+            </div>
+            <hr>
+            <div class="box-row" id="row-2">
+
+                <div class="box" id="box-2"></div>
+                <div class="box" id="box-3"></div>
+                <div class="box" id="box-4"></div>
+                <div class="box" id="box-5"></div>
+
+            </div>
+            <hr>
+            <div class="box-row" id="row-3">
+                <div class="box" id="box-6"></div> 
+            </div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log("jQuery is ready!");
+
+            let colors = ['red','green','blue','yellow','pink','palevioletred'];
+
+            let $boxes = $('.box');
+            console.log($boxes);
+
+            function rotateArray(arr){
+                let last = arr.pop();
+                arr.unshift(last);
+            }
+
+            function updateUI(){
+                $boxes.each(function(index){
+                    $(this).css('background-color',colors[index]);
+                });
+            }
+
+            updateUI();
+            
+            setInterval(function(){
+                rotateArray(colors);
+                updateUI();
+            },500);
+
+        });
+
+
+    </script>
+
+</body>
+</html>

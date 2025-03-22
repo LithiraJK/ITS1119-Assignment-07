@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case-01</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/css/case-1.css">
+</head>
+<body>
+    <header>
+        <h1>JS Que</h1>
+    </header>
+    <main>
+        <div class="frame-container">
+            <div class="frame" id="frame-01">
+                <img src="/assets/images/person.gif" alt="person">
+                <h2>A</h2>
+            </div>
+            <div class="frame" id="frame-02">
+                <img src="/assets/images/person.gif" alt="person">
+                <h2>B</h2>
+            </div>
+            <div class="frame" id="frame-02">
+                <img src="/assets/images/person.gif" alt="person">
+                <h2>C</h2>
+            </div>
+            <div class="frame" id="frame-02">
+                <img src="/assets/images/person.gif" alt="person">
+                <h2>D</h2>
+            </div>
+            <div class="frame" id="frame-02">
+                <img src="/assets/images/person.gif" alt="person">
+                <h2>E</h2>
+            </div>
+            <div class="frame" id="frame-02">
+                <img src="/assets/images/person.gif" alt="person">
+                <h2>F</h2>
+            </div>
+            <div class="frame" id="frame-07">
+                <img src="/assets/images/home.gif" alt="home">
+            </div>
+        </div>        
+    </main>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log("jQuery is ready!");
+
+            let letters = ['A','B','C','D','E','F'];
+
+            let $frames = $('.frame > h2');
+            console.log($frames);
+
+            function rotateArray(arr){
+                let last = arr.pop();
+                arr.unshift(last);
+            }
+
+            function updateUI(){
+                $frames.each(function(index){
+                    $(this).text(letters[index]);
+                });
+            }
+
+            updateUI();
+            
+            setInterval(function(){
+                rotateArray(letters);
+                updateUI();
+            },2000);
+
+        });
+
+
+    </script>
+
+</body>
+</html>
