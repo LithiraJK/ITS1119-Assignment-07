@@ -1,11 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS-Knight Rider</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="/css/js-knight-rider.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Java Script Knight Rider</h1>
+
+      <div class="box-container">
+        <hr />
+        <div class="box-row">
+          <div class="box" id="box-1"></div>
+          <div class="box" id="box-2"></div>
+          <div class="box" id="box-3"></div>
+          <div class="box" id="box-4"></div>
+          <div class="box" id="box-5"></div>
+          <div class="box" id="box-6"></div>
+          <div class="box" id="box-7"></div>
+        </div>
+        <hr />
+      </div>
+      <div class="btn-container">
+        <button type="button" onclick="" id="btn-start">Start</button>
+        <button type="button" onclick="" id="btn-end">Stop</button>
+        <audio
+          id="bg-music"
+          src="/assets/audios/Knight-Rider-Theme-Song.mp3"
+          loop></audio>
+      </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          let lights = $(".box");
+          let index = 0;
+          let forward = true;
+          let fadeLevels = 6;
+          let intervalId = null;
+          let play = false;
+      
+          function playMusic() {
+            let audio = document.getElementById("bg-music");
+            audio.play();
+          }
+      
+          function stopMusic() {
+            let audio = document.getElementById("bg-music");
+            audio.pause();
+          }
+      
+          function resetLights() {
+            lights.removeClass("level-0 level-1 level-2 level-3 level-4 level-5");
+          }
+      
+          function animateLight() {
+            resetLights();
+      
+            for (let i = 0; i < fadeLevels; i++) {
+              let fadeIndex = forward ? index - i : index + i;
+              if (fadeIndex >= 0 && fadeIndex < lights.length) {
+                lights.eq(fadeIndex).addClass(`level-${i}`);
+              }
+            }
+      
+            if (forward) {
+              index++;
+              if (index >= lights.length + fadeLevels - 1) {
+                index = lights.length - 2;
+                forward = false;
+              }
+            } else {
+              index--;
+              if (index < -fadeLevels + 1) {
+                index = 1;
+                forward = true;
+              }
+            }
+          }
+      
+          $("#btn-start").click(function () {
+            playMusic();
+            if (!intervalId) {
+              intervalId = setInterval(animateLight, 100);
+            }
+          });
+      
+          $("#btn-end").click(function () {
+            stopMusic();
+            clearInterval(intervalId);
+            intervalId = null;
+          });
+        });
+      </script>
+      
+  </body>
 </html>
